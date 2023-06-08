@@ -4,12 +4,15 @@ import Slider from '../Slider/Slider';
 const Hero = () => {
     return (
       <div className="my_container">
-        <div className='flex'>
-          <div className='w-1/2'>
-            <h2>Dance For us is not just an activity, it is a way of life</h2>
-            <button>Call Us</button>
+        <div className="lg:flex items-center">
+          <div className="lg:w-1/2">
+            <h2 className="lg:text-6xl text-3xl text-center lg:text-left font-bold mb-5 lg:mb-14">
+              Dance For us is not <br className='lg:hidden' /> just an activity, it is
+              <br className='lg:hidden' /> a way of life
+            </h2>
+            <button className='px-11 font-semibold rounded-3xl block mx-auto lg:ms-0 bg-red-400 py-3'>Call Us</button>
           </div>
-          <div className='w-1/2'>
+          <div className="lg:w-1/2 mt-10 lg:mt-0">
             <Slider></Slider>
           </div>
         </div>
