@@ -1,14 +1,22 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
+import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
+import { FiUsers} from "react-icons/fi";
+import { SiGoogleclassroom } from "react-icons/si";
+import { MdManageAccounts } from "react-icons/md";
 const Dashboard = () => {
-  const isAdmin = true;
+
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor();
+  console.log(isInstructor);
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
-              {/* Page content here */}
-              <Outlet/>
+        {/* Page content here */}
+        <Outlet />
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
@@ -19,21 +27,48 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content font-semibold">
-          {/* Sidebar content here */}
           {isAdmin ? (
             <>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">
+                 <AiOutlineHome/>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/">Manage Classes</Link>
+                <Link to="/"><MdManageAccounts/>Manage Classes</Link>
               </li>
               <li>
-                <Link to="/dashboard/all-users">Manage Users</Link>
+                <Link to="/dashboard/all-users"><FiUsers/>Manage Users</Link>
+              </li>
+            </>
+          ) : isInstructor ? (
+            <>
+              <li>
+                <Link to="/">
+                  <AiOutlineHome/>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard/add-classes"><AiOutlineFileAdd/>Add a Classes</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/all-users"><SiGoogleclassroom/>My Classes</Link>
               </li>
             </>
           ) : (
-            ""
+            <>
+              <li>
+                <Link to="/">
+                  <AiOutlineHome/>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/">Gorib</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>

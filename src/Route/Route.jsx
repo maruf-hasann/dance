@@ -7,6 +7,7 @@ import Error from "../Pages/Error/Error";
 
 import Dashboard from "../Layout/Dashboard";
 import Users from "../Pages/Admin/ManageUsers/Users";
+import AddClass from "../Pages/Instructors/AddClass/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,9 @@ export const router = createBrowserRouter([
       {
         path: 'all-users',
         element:<Users/>
+      }, {
+        path: 'add-classes',
+        element:<AddClass/>
       }
     ]
   } ,{

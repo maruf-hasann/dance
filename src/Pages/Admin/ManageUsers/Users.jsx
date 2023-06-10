@@ -29,10 +29,31 @@ const Users = () => {
            });
         }
       })
- }
+  }
+  
+  const handleMakeInstructor = (user) => {
+
+   fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+     method: "PATCH",
+   })
+      .then(res => res.json())
+     .then(data => {
+       if (data.modifiedCount) {
+         refetch();
+         Swal.fire({
+           position: "top-end",
+           icon: "success",
+           title: `${user?.name} is an Instructor Now`,
+           showConfirmButton: false,
+           timer: 1000,
+         });
+      }
+    })
+
+  }
 
     return (
-      <div className="overflow-x-auto w-full">
+      <div className="overflow-x-auto max-w-full">
         <table className="table table-zebra">
           {/* head */}
           <thead>
@@ -47,25 +68,32 @@ const Users = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={index}>
+              <tr key={user._id}>
                 <td>{index + 1}</td>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>{user?.role}</td>
                 <td>
                   <button
-                    
                     className="custom_btn disabled:opacity-20"
                     onClick={(event) => {
                       event.target.disabled = true;
-                      handleMakeAdmin(user)
+                      handleMakeAdmin(user);
                     }}
                   >
                     Make Admin
                   </button>
                 </td>
                 <td>
-                  <button className="custom_btn">Make Instructor</button>
+                  <button
+                    onClick={(event) => {
+                      event.target.disabled = true;
+                      handleMakeInstructor(user);
+                    }}
+                    className="custom_btn"
+                  >
+                    Make Instructor
+                  </button>
                 </td>
               </tr>
             ))}
