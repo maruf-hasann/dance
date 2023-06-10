@@ -22,6 +22,9 @@ const Header = () => {
       <li>
         <Link to="/">Classes</Link>
       </li>
+      {
+        user ? <li><Link to='/dashboard'>Dashboard</Link></li> : ""
+      }
      
     </>
   );

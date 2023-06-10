@@ -25,24 +25,35 @@ const Register = () => {
         const user = result.user;
         updateUserProfile(data.name, data.photo)
           .then(() => {
-            // Profile updated!
-            // ...
+            const userInfo = { name: data.name, email: data.email }
+              fetch("http://localhost:5000/users", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(userInfo),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.insertedId) {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "User created successfully.",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }
+                });
+          
           })
           .catch((error) => {
             // An error occurred
             // ...
           });
-        
-        if (user) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Account create Done",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+      
       })
+
     .catch(err => console.log(err))
   };
 

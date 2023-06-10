@@ -49,9 +49,12 @@ const Login = () => {
               type="text"
               placeholder="Email"
               className="input input-bordered input-primary w-full max-w-xs"
-               {...register("email", { required: true })}
+              {...register("email", { required: true })}
             />{" "}
             <br />
+            {errors.email && (
+              <span className="text-red-600">Email is required</span>
+            )}
             <div className="flex">
               <input
                 type={show}
@@ -64,6 +67,9 @@ const Login = () => {
                 className="text-xl relative right-7 mt-4"
               />
             </div>
+            {errors.password?.type === "required" && (
+              <p className="text-red-600">Password is required</p>
+            )}
             <br />
             <input
               className="max-w-xs w-full custom_btn"
