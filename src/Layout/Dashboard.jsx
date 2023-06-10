@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/add-classes"><AiOutlineFileAdd/>Add a Classes</Link>
               </li>
               <li>
-                <Link to="/dashboard/all-users"><SiGoogleclassroom/>My Classes</Link>
+                <Link to="/dashboard/my-classes"><SiGoogleclassroom/>My Classes</Link>
               </li>
             </>
           ) : (

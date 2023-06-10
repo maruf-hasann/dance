@@ -72,7 +72,8 @@ const Register = () => {
                 placeholder="Name"
                 className="input input-bordered input-primary w-full max-w-xs"
                 {...register("name", { required: true })}
-              /> <br></br>
+              />{" "}
+              <br></br>
               {errors.name && (
                 <span className="text-red-600">Name is required</span>
               )}
@@ -82,7 +83,8 @@ const Register = () => {
                 placeholder="Email"
                 {...register("email", { required: true })}
                 className="input input-bordered input-primary w-full max-w-xs"
-              /> <br/>
+              />{" "}
+              <br />
               {errors.email && (
                 <span className="text-red-600">Email is required</span>
               )}
@@ -91,13 +93,22 @@ const Register = () => {
                 type="password"
                 placeholder="Password"
                 className="input input-bordered input-primary w-full max-w-xs"
-                {...register("password", { required: true, minLength: 6 })}
-              /> 
+                {...register("password", {
+                  required: true,
+                  minLength: 8,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                })}
+              />
               {errors.password?.type === "required" && (
                 <p className="text-red-600">Password is required</p>
               )}
               {errors.password?.type === "minLength" && (
-                <p className="text-red-600">Password must be 6 characters</p>
+                <p className="text-red-600">Password must be 8 characters</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-600">
+                  Password must have one Uppercase and one special character.
+                </p>
               )}
               <input
                 type="password"
@@ -109,11 +120,11 @@ const Register = () => {
                 placeholder="Photo URL"
                 className="input input-bordered input-primary w-full max-w-xs"
                 {...register("photo", { required: true })}
-              /> <br/>
+              />{" "}
+              <br />
               {errors.photo && (
                 <span className="text-red-600">Photo URL is required</span>
               )}
-
               <br />
               <input
                 className="max-w-xs w-full custom_btn"
