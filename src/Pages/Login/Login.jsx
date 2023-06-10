@@ -4,9 +4,14 @@ import Lottie from "lottie-react";
 import animation from "../../assets/log.json";
 import useTitle from "../../Hooks/useTitle";
 import { Link } from "react-router-dom";
-import { FiEye} from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import Google from "../../Components/GoogleLogin/Google";
+
 const Login = () => {
-  const [show,setShow] = useState('password')
+  const [show, setShow] = useState('password')
+  const {loginUser} = useAuth()
     useTitle('Login')
   const {
     register,
@@ -14,7 +19,19 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    loginUser(data.email, data.password)
+      .then(resut => {
+        const user = resut.user
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Done",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    })
+  };
   const passwordShow = () => {
    setShow('text')
   }
@@ -26,17 +43,19 @@ const Login = () => {
           <Lottie animationData={animation}></Lottie>
         </div>
         <div className="lg:w-2/5 rounded-3xl bg-[#fbf9ff]  px-20 py-20">
-          <form className="space-y-4 py-8 ">
+          <form className="space-y-4 py-8" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
               placeholder="Email"
               className="input input-bordered input-primary w-full max-w-xs"
+               {...register("email", { required: true })}
             />{" "}
             <br />
             <div className="flex">
               <input
                 type={show}
                 placeholder="Password"
+                {...register("password", { required: true })}
                 className="input input-bordered input-primary w-full max-w-xs"
               />
               <FiEye
@@ -46,7 +65,7 @@ const Login = () => {
             </div>
             <br />
             <input
-              className="max-w-xs w-full px-11 text-white font-semibold rounded-3xl block lg:ms-0 bg-[#9672f0] py-3"
+              className="max-w-xs w-full custom_btn"
               type="submit"
               value="Login"
             />
@@ -59,6 +78,7 @@ const Login = () => {
               </Link>
             </p>
           </div>
+          <Google></Google>
         </div>
       </div>
     </div>

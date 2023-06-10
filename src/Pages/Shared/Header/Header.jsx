@@ -1,8 +1,16 @@
 import React from "react";
 import Logo from "../../../assets/logo.png";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
+  const { user, logoutUser } = useAuth();
+  console.log(user);
+  const signOut = () => {
+    logoutUser()
+      .then()
+    .catch()
+  }
   const navContent = (
     <>
       <li>
@@ -14,6 +22,9 @@ const Header = () => {
       <li>
         <Link to="/">Classes</Link>
       </li>
+      {
+        user ? <li>{user.displayName}</li> : ""
+      }
     </>
   );
   return (
@@ -53,9 +64,18 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <button>
-          <Link to='/login'>Login</Link>
-        </button>
+        {user ? (
+          <div>
+            <img src={user.photoURL} />
+            <button onClick={signOut} className="custom_btn">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <button className="custom_btn">
+            <Link to="/login">Login</Link>
+          </button>
+        )}
       </div>
     </header>
   );

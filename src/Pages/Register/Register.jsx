@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Lottie from "lottie-react";
 import animation from "../../assets/142230-login.json";
 import Google from '../../Components/GoogleLogin/Google';
 import useTitle from '../../Hooks/useTitle';
 import { useForm } from 'react-hook-form';
+import { authContext } from '../../Provider/AuthProvider';
+import useAuth from '../../Hooks/useAuth';
+import Swal from "sweetalert2";
+
+
 const Register = () => {
+    
+  const { createUser, updateUserProfile } = useAuth();
   useTitle('Register')
   const {
     register,
@@ -12,7 +19,32 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    createUser(data.email, data.password)
+      .then(result => {
+        const user = result.user;
+        updateUserProfile(data.name, data.photo)
+          .then(() => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+        
+        if (user) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Account create Done",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+    .catch(err => console.log(err))
+  };
 
  
     return (
@@ -59,7 +91,7 @@ const Register = () => {
 
               <br />
               <input
-                className="max-w-xs w-full px-11 text-white font-semibold rounded-3xl block lg:ms-0 bg-[#9672f0] py-3"
+                className="max-w-xs w-full custom_btn"
                 type="submit"
                 value="Register"
               />
