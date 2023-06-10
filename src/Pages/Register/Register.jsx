@@ -61,22 +61,33 @@ const Register = () => {
                 placeholder="Name"
                 className="input input-bordered input-primary w-full max-w-xs"
                 {...register("name", { required: true })}
-              />
+              /> <br></br>
+              {errors.name && (
+                <span className="text-red-600">Name is required</span>
+              )}
               <br />
               <input
                 type="email"
                 placeholder="Email"
                 {...register("email", { required: true })}
                 className="input input-bordered input-primary w-full max-w-xs"
-              />
+              /> <br/>
+              {errors.email && (
+                <span className="text-red-600">Email is required</span>
+              )}
               <br />
               <input
                 type="password"
-            
                 placeholder="Password"
                 className="input input-bordered input-primary w-full max-w-xs"
-                {...register("password", { required: true })}
-              />
+                {...register("password", { required: true, minLength: 6 })}
+              /> 
+              {errors.password?.type === "required" && (
+                <p className="text-red-600">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">Password must be 6 characters</p>
+              )}
               <input
                 type="password"
                 placeholder="Confirm password"
@@ -87,7 +98,10 @@ const Register = () => {
                 placeholder="Photo URL"
                 className="input input-bordered input-primary w-full max-w-xs"
                 {...register("photo", { required: true })}
-              />
+              /> <br/>
+              {errors.photo && (
+                <span className="text-red-600">Photo URL is required</span>
+              )}
 
               <br />
               <input

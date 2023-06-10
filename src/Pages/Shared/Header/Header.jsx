@@ -5,7 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
-  console.log(user);
+ 
   const signOut = () => {
     logoutUser()
       .then()
@@ -22,9 +22,7 @@ const Header = () => {
       <li>
         <Link to="/">Classes</Link>
       </li>
-      {
-        user ? <li>{user.displayName}</li> : ""
-      }
+     
     </>
   );
   return (
@@ -63,10 +61,14 @@ const Header = () => {
           {navContent}
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end ">
         {user ? (
-          <div>
-            <img src={user.photoURL} />
+          <div  className="flex gap-4">
+            <img
+              src={user?.photoURL}
+              width="50px"
+              className="rounded-full ring-4 ring-[#b8a2f8]"
+            />
             <button onClick={signOut} className="custom_btn">
               Logout
             </button>

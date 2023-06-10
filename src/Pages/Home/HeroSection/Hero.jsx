@@ -10,7 +10,7 @@ const Hero = () => {
               Dance For us is not <br className='lg:hidden' /> just an activity, it is
               <br className='lg:hidden' /> a way of life
             </h2>
-            <button className='px-11 font-semibold rounded-3xl block mx-auto lg:ms-0 bg-red-400 py-3'>Call Us</button>
+            <button className='custom_btn'>Call Us</button>
           </div>
           <div className="lg:w-1/2 mt-10 lg:mt-0">
             <Slider></Slider>

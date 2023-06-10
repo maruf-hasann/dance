@@ -8,34 +8,41 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(apps);
     const provider = new GoogleAuthProvider()
     const [user, setUser] = useState(null)
+    const [loader,setLoader] = useState(true)
     
     // Google login
     const googleLogin = () => {
+        setLoader(true)
            return signInWithPopup(auth, provider);
     }
      
     
     // User create email and  password
-    const createUser = (email,password) => {
+    const createUser = (email, password) => {
+          setLoader(true);
         return createUserWithEmailAndPassword(auth,email,password)
     }
     // login user
-    const loginUser = (email,password) => {
+    const loginUser = (email, password) => {
+          setLoader(true);
         return signInWithEmailAndPassword(auth,email,password)
     }
     // const update profile
-    const updateUserProfile = (name,photo) => {
+    const updateUserProfile = (name, photo) => {
+          setLoader(true);
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL : photo
         })
     }
     // logOUt 
     const logoutUser = () => {
+          setLoader(true);
         return signOut(auth)
     }
     useEffect(() => {
           const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+              setUser(currentUser);
+                setLoader(false);
           });
           return () => {
             return unSubscribe();
