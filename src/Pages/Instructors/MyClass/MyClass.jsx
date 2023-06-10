@@ -5,9 +5,10 @@ import axios from "axios";
 import Text from "../../../Components/GoogleLogin/HeadingText/Text";
 
 const MyClass = () => {
-  const { user } = useAuth();
-  const { data} = useQuery({
+  const { user,loader } = useAuth();
+  const { data } = useQuery({
     queryKey: ["email", user?.email],
+    enabled: !loader,
     queryFn: async () => {
       const { data } = await axios.get(
         `http://localhost:5000/all-classes?email=${user?.email}`

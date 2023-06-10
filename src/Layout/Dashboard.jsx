@@ -31,37 +31,49 @@ const Dashboard = () => {
             <>
               <li>
                 <Link to="/">
-                 <AiOutlineHome/>
+                  <AiOutlineHome />
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/"><MdManageAccounts/>Manage Classes</Link>
+                <Link to="/dashboard/manage-classes">
+                  <MdManageAccounts />
+                  Manage Classes
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard/all-users"><FiUsers/>Manage Users</Link>
+                <Link to="/dashboard/all-users">
+                  <FiUsers />
+                  Manage Users
+                </Link>
               </li>
             </>
           ) : isInstructor ? (
             <>
               <li>
                 <Link to="/">
-                  <AiOutlineHome/>
+                  <AiOutlineHome />
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/add-classes"><AiOutlineFileAdd/>Add a Classes</Link>
+                <Link to="/dashboard/add-classes">
+                  <AiOutlineFileAdd />
+                  Add a Classes
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard/my-classes"><SiGoogleclassroom/>My Classes</Link>
+                <Link to="/dashboard/my-classes">
+                  <SiGoogleclassroom />
+                  My Classes
+                </Link>
               </li>
             </>
           ) : (
             <>
               <li>
                 <Link to="/">
-                  <AiOutlineHome/>
+                  <AiOutlineHome />
                   Home
                 </Link>
               </li>
