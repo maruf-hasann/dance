@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import animation from "../../assets/log.json";
 import useTitle from "../../Hooks/useTitle";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -12,7 +12,9 @@ import Google from "../../Components/GoogleLogin/Google";
 const Login = () => {
   // TODO
   const [show, setShow] = useState('password')
-  const {loginUser} = useAuth()
+  const { loginUser } = useAuth()
+  const location = useLocation()
+  const navi = useNavigate()
     useTitle('Login')
   const {
     register,
@@ -31,6 +33,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navi(location.state?.from?.pathname || "/");
     })
   };
   const passwordShow = () => {

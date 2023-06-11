@@ -1,21 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const ClassCard = ({ card }) => {
-    const { user } = useAuth();
+  const { user } = useAuth();
+  const location = useLocation()
 
-    const handleSelect = () => {
+  const handleSelect = () => {
     if (user) {
       axios
         .post("http://localhost:5000/selected", {
-          ...card,
+          name: card?.name,
           studentEmail: user?.email,
+          image: card?.image,
+          email: card?.email,
+          insName: card?.insName,
+          seats: card?.seats,
+          price: card?.seats,
+          status: card?.status,
         })
         .then((res) => {
-            if (res.data.insertedId) {
+          if (res.data.insertedId) {
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -41,13 +48,16 @@ const ClassCard = ({ card }) => {
         <h2 className="font-semibold text-[22px]">Price : $ {card?.price}</h2>
 
         <div className="card-actions justify-start">
-                  <button
-                     
-            className="custom_btn"
-            onClick={handleSelect}
-          >
-            <Link>Select</Link>
-          </button>
+          {user ? (
+            <button className="custom_btn" onClick={handleSelect}>
+              <Link>Select</Link>
+            </button>
+          ) : (
+            <button className="custom_btn" onClick={handleSelect}>
+                <Link state={{from:location}} to='/login'>Select</Link>
+               
+            </button>
+          )}
         </div>
       </div>
     </div>
