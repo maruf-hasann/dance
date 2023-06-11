@@ -17,15 +17,18 @@ const Header = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/">Instructors</Link>
+        <Link to="/instructor">Instructors</Link>
       </li>
       <li>
-        <Link to="/">Classes</Link>
+        <Link to="/classes">Classes</Link>
       </li>
-      {
-        user ? <li><Link to='/dashboard'>Dashboard</Link></li> : ""
-      }
-     
+      {user ? (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      ) : (
+        ""
+      )}
     </>
   );
   return (
