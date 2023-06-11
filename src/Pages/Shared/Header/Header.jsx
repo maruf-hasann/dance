@@ -73,6 +73,7 @@ const Header = () => {
             <img
               src={user?.photoURL}
               width="50px"
+              height="50px"
               className="rounded-full ring-4 ring-[#b8a2f8]"
             />
             <button onClick={signOut} className="custom_btn">

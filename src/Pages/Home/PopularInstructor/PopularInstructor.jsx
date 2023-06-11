@@ -10,7 +10,7 @@ const PopularInstructor = () => {
             .then(data => setInstructor(data))
     }, [])
     // console.log(instructor);
-    const filterInstructor = instructor.filter(data => data?.image)
+    const filterInstructor = instructor.filter(data => data?.image && data?.role === 'instructor')
     console.log(filterInstructor);
     return (
         <div className="my_container">

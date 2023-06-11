@@ -78,7 +78,10 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/">Gorib</Link>
+                <Link to="/">My Selected Classes</Link>
+                  </li>
+                  <li>
+                <Link to="/">My Enroll Classes</Link>
               </li>
             </>
           )}
