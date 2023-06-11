@@ -4,17 +4,36 @@ import { useQuery } from "react-query";
 import useAuth from "../../../Hooks/useAuth";
 import { AiOutlineDelete } from "react-icons/ai";
 import Text from "../../../Components/GoogleLogin/HeadingText/Text";
+import { useFetcher } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SelectedClass = () => {
-  const { user, loader } = useAuth();
+  const { user, loader,setLoader} = useAuth();
+ 
 
   const { data, refetch } = useQuery(["Email"], async () => {
     const res = await axios.get(
       `http://localhost:5000/studentSelect?email=${user?.email}`
     );
+   
     return res.data;
   });
 //   console.log(data);
+  const handleDelete = async (id) => {
+     
+    const res = await axios.delete(`http://localhost:5000/delete?id=${id}`)
+    if (res.data.deletedCount > 0) {
+      refetch()
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Class remove",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+   
+  }
 
   return (
       <div className="overflow-x-auto w-full my_container">
@@ -46,7 +65,7 @@ const SelectedClass = () => {
                 <button className="custom_btn">Pay</button>
               </td>
               <td>
-                <button>
+                <button  onClick={() =>handleDelete(d._id)}>
                   <AiOutlineDelete className="text-2xl text-red-500" />
                 </button>
               </td>
