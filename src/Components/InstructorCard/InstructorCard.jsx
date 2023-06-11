@@ -7,7 +7,7 @@ const InstructorCard = ({ card }) => {
         <div>
           <img
             src={image}
-            className="rounded-2xl"
+            className="rounded-2xl hover:scale-110 duration-300"
             width="250px"
             height="200px"
             alt=""

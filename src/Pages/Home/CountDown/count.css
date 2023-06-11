@@ -1,0 +1,7 @@
+div > h3 {
+    font-size: 2rem;
+    font-weight:  bolder;
+}
+div > strong {
+    color: rgb(63, 60, 66);
+}
