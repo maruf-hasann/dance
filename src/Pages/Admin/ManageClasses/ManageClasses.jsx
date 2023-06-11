@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Text from "../../../Components/GoogleLogin/HeadingText/Text";
 import { useQuery } from "react-query";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { data } from "autoprefixer";
 import Swal from "sweetalert2";
 
 const ManageClasses = () => {
+  const [idmodal, setIdmodal] = useState(null);
   const { data, refetch } = useQuery(["classes"], async () => {
     const { data } = await axios.get("http://localhost:5000/admin-allClass");
     return data;
@@ -17,8 +18,8 @@ const ManageClasses = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-          if (data.modifiedCount) {
-            refetch()
+        if (data.modifiedCount) {
+          refetch();
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -28,6 +29,26 @@ const ManageClasses = () => {
           });
         }
       });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const text = event.target.text.value;
+
+    await axios.patch(`http://localhost:5000/admin-feedBack?id=${idmodal}`, {
+      feedBack: event.target.text.value,
+    })
+        .then(res => {
+            if (res.data.modifiedCount) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Feedback send",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+          }
+      })
   };
   return (
     <div className="overflow-x-auto w-full">
@@ -45,6 +66,7 @@ const ManageClasses = () => {
             <th>Price</th>
             <th>Status</th>
             <th>Action</th>
+            <th>Feedback</th>
           </tr>
         </thead>
         <tbody>
@@ -72,10 +94,34 @@ const ManageClasses = () => {
                 </button>{" "}
                 <button className="btn bg-red-300">Denied</button>
               </td>
+              <td>
+                <button
+                  className="custom_btn"
+                  onClick={() => {
+                    window.my_modal_2.showModal();
+                    setIdmodal(d._id);
+                  }}
+                >
+                  Send feedback
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <dialog id="my_modal_2" className="modal">
+        <form method="dialog" className="modal-box" onSubmit={handleSubmit}>
+          <textarea
+            className="textarea textarea-primary mb-5"
+            placeholder="Write Here . ."
+            name="text"
+          ></textarea>
+          <input type="submit" className="custom_btn" value="Send" />
+        </form>
+        <form method="dialog" className="modal-backdrop">
+          <button >close</button>
+        </form>
+      </dialog>
     </div>
   );
 };

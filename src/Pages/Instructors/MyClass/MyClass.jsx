@@ -42,7 +42,7 @@ const MyClass = () => {
                           <td>{d?.name}</td>
                           <td>{d?.enroll || 0}</td>
                           <td className="font-semibold text-purple-950">{d?.status}</td>
-                          <td>{d?.feedback}</td>
+                          <td>{d?.feedBack}</td>
                           <td><button className="btn bg-purple-300">Update</button></td>
                    </tr>)   
                 }  
