@@ -78,9 +78,9 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/">My Selected Classes</Link>
-                  </li>
-                  <li>
+                <Link to="/dashboard/selectedClass">My Selected Classes</Link>
+              </li>
+              <li>
                 <Link to="/">My Enroll Classes</Link>
               </li>
             </>
