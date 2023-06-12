@@ -88,12 +88,14 @@ const Header = () => {
       <div className="navbar-end ">
         {user ? (
           <div className="flex gap-4">
-            <img
-              src={user?.photoURL}
-              width="50px"
-              height="50px"
-              className="rounded-full hidden lg:block ring-4 ring-[#b8a2f8]"
-            />
+            <div className="h-[50px] w-[50px">
+              <img
+                src={user?.photoURL}
+                width="50px"
+                height="50px"
+                className="rounded-full hidden lg:block ring-4 ring-[#b8a2f8]"
+              />
+            </div>
             <button onClick={signOut} className="custom_btn">
               Logout
             </button>

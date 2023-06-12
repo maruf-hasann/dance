@@ -15,6 +15,8 @@ import ClassesPage from "../Pages/ClassesPage/ClassesPage";
 import SelectedClass from "../Pages/Student/MySelectedClass/SelectedClass";
 import EnrollClass from "../Pages/Student/EnrollClass/EnrollClass";
 import Payment from "../Pages/Student/Payment/Payment";
+import AdminPrivate from "../PrivateRoute/Admin/AdminPrivate";
+import PrivateInstructor from '../PrivateRoute/Instructor/PrivateInstructor'
 
 export const router = createBrowserRouter([
   {
@@ -49,30 +51,44 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "all-users",
-        element: <Users />,
+        element: (
+          <AdminPrivate>
+            <Users />
+          </AdminPrivate>
+        ),
       },
       {
         path: "add-classes",
-        element: <AddClass />,
+        element: <PrivateInstructor>
+          <AddClass/>
+        </PrivateInstructor>,
       },
       {
         path: "my-classes",
-        element: <MyClass />,
+        element: <PrivateInstructor>
+          <MyClass/>
+        </PrivateInstructor>,
       },
       {
         path: "manage-classes",
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <AdminPrivate>
+            <ManageClasses></ManageClasses>
+          </AdminPrivate>
+        ),
       },
       {
         path: "selectedClass",
         element: <SelectedClass></SelectedClass>,
-      }, {
-        path: 'enrollClass',
-        element:<EnrollClass></EnrollClass>
-      }, {
-        path: 'payment/:price',
-        element:<Payment/>
-      }
+      },
+      {
+        path: "enrollClass",
+        element: <EnrollClass></EnrollClass>,
+      },
+      {
+        path: "payment/:price",
+        element: <Payment />,
+      },
     ],
   },
   {

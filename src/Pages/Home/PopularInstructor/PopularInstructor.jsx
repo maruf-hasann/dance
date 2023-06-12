@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InstructorCard from '../../../Components/InstructorCard/InstructorCard';
 import Text from '../../../Components/GoogleLogin/HeadingText/Text';
-
+import { JackInTheBox } from "react-awesome-reveal";
 const PopularInstructor = () => {
     const [instructor, setInstructor] = useState([])
     useEffect(() => {
@@ -15,13 +15,16 @@ const PopularInstructor = () => {
     
     // console.log(filterInstructor);
     return (
-        <div className="my_container">
-            <Text text='Popular Instructor'></Text>
-        <div className='lg:grid lg:grid-cols-3 '>
-          {instructor.slice(6,13).map((i) => (
-            <InstructorCard key={i._id} card={i}></InstructorCard>
-          ))}
-        </div>
+      <div className="my_container">
+        <Text text="Popular Instructor"></Text>
+        <JackInTheBox >
+          {" "}
+          <div className="lg:grid lg:grid-cols-3 ">
+            {instructor.slice(6, 13).map((i) => (
+              <InstructorCard key={i._id} card={i}></InstructorCard>
+            ))}
+          </div>
+        </JackInTheBox>
       </div>
     );
 };

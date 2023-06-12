@@ -63,7 +63,7 @@ const ManageClasses = () => {
   };
   return (
     <div className="overflow-x-auto w-full">
-      <Text text="All Classes"></Text>
+      <Text text="All Classes" ></Text>
       <table className="table table-zebra">
         {/* head */}
         <thead>

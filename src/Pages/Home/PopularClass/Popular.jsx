@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import PopularCard from '../../../Components/PopularCard/PopularCard';
 import Text from '../../../Components/GoogleLogin/HeadingText/Text';
-
+import { Slide} from "react-awesome-reveal";
 const Popular = () => {
     const { data: classes = [], refetch } = useQuery(["users"], async () => {
       const res = await axios.get(
@@ -13,13 +13,15 @@ const Popular = () => {
     });
     
     return (
-      <div className='my_container'>
-        <Text text='Popular Classes'></Text>
-        <div className="lg:grid lg:grid-cols-3">
-          {classes.map((c) => (
-            <PopularCard key={c._id} card={c}></PopularCard>
-          ))}
-        </div>
+      <div className="my_container">
+        <Text text="Popular Classes"></Text>
+        <Slide>
+          <div className="lg:grid lg:grid-cols-3">
+            {classes.map((c) => (
+              <PopularCard key={c._id} card={c}></PopularCard>
+            ))}
+          </div>
+        </Slide>
       </div>
     );
 };

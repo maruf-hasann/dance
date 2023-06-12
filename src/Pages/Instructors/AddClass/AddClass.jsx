@@ -58,7 +58,7 @@ const AddClass = () => {
       
   };
 
-  console.log(watch("example"));
+ 
   return (
       <div>
           <Text text='Add Class'></Text>
