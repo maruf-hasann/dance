@@ -6,7 +6,7 @@ const Footer = () => {
       <>
         <footer className="footer p-10 my_container text-base-content">
           <div>
-            <h4 className="text-2xl font-semibold">Dance</h4>
+            <h4 className="text-2xl font-semibold">FLAIRE</h4>
             <pre>
               Dhaka,Bangladesh <br />
               Phone: +88832212
@@ -53,8 +53,8 @@ const Footer = () => {
             </div>
           </div>
         </footer>
-        <div className='my_container lg:text-center'>
-          <p>Copyright © 2023 - All right reserved by Dance</p>
+        <div className="my_container lg:text-center">
+          <p>Copyright © 2023 - All right reserved by FLAIRE</p>
         </div>
       </>
     );

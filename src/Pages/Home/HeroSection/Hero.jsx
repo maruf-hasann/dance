@@ -3,14 +3,17 @@ import Slider from '../Slider/Slider';
 
 const Hero = () => {
     return (
-      <div className="my_container">
+      <div className="my_container dark:text-white">
         <div className="lg:flex items-center">
           <div className="lg:w-1/2">
-            <h2 className="lg:text-6xl text-3xl text-center lg:text-left font-bold mb-5 lg:mb-14">
-              Dance For us is not <br className='lg:hidden' /> just an activity, it is
-              <br className='lg:hidden' /> a way of life
+            <h2 className="lg:text-6xl text-3xl text-center lg:text-left font-bold mb-5 lg:mb-5">
+              IMPROVE YOUR DANCE SKILLS WITH FLAIRE
             </h2>
-            <button className='custom_btn'>Call Us</button>
+            <p className='text-base lg:text-start text-center mb-6'>
+              This also meant we needed to provide a learning environment run by <br></br>
+              experienced and successful Instructor.
+            </p>
+            <button className="custom_btn mx-auto lg:ms-0">Call Us</button>
           </div>
           <div className="lg:w-1/2 mt-10 lg:mt-0">
             <Slider></Slider>

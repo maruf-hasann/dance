@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Text from '../../Components/GoogleLogin/HeadingText/Text';
 import InfoCard from '../../Components/InstructorInfoCard/InfoCard';
-
+import useTitle from '../../Hooks/useTitle'
 const InstructorInfo = () => {
- const [instructor, setInstructor] = useState([]);
+  const [instructor, setInstructor] = useState([]);
+  useTitle('Instructor')
  useEffect(() => {
-   fetch("https://myapp-dun-mu.vercel.app/instructor?role=instructor")
+   fetch(
+     "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/instructor?role=instructor"
+   )
      .then((res) => res.json())
      .then((data) => setInstructor(data));
  }, []);

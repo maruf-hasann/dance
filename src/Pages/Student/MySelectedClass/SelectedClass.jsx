@@ -4,8 +4,9 @@ import { useQuery } from "react-query";
 import useAuth from "../../../Hooks/useAuth";
 import { AiOutlineDelete } from "react-icons/ai";
 import Text from "../../../Components/GoogleLogin/HeadingText/Text";
-import { useFetcher } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
 import Swal from "sweetalert2";
+
 
 const SelectedClass = () => {
   const { user, loader,setLoader} = useAuth();
@@ -13,7 +14,7 @@ const SelectedClass = () => {
 
   const { data, refetch } = useQuery(["Email"], async () => {
     const res = await axios.get(
-      `https://myapp-dun-mu.vercel.app/studentSelect?email=${user?.email}`
+      `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/studentSelect?email=${user?.email}`
     );
    
     return res.data;
@@ -22,7 +23,7 @@ const SelectedClass = () => {
   const handleDelete = async (id) => {
      
     const res = await axios.delete(
-      `https://myapp-dun-mu.vercel.app/delete?id=${id}`
+      `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/delete?id=${id}`
     );
     if (res.data.deletedCount > 0) {
       refetch()
@@ -36,10 +37,13 @@ const SelectedClass = () => {
     }
    
   }
-
+  // const handlePay = () => {
+  //   console.log('clicking');
+  // }
+ 
   return (
-      <div className="overflow-x-auto w-full my_container">
-          <Text text='My Selected Classes'></Text>
+    <div className="overflow-x-auto w-full my_container">
+      <Text text="My Selected Classes"></Text>
       <table className="table">
         {/* head */}
         <thead>
@@ -64,10 +68,12 @@ const SelectedClass = () => {
               <td>$ {d?.price}</td>
               <td>{d?.seats}</td>
               <td>
-                <button className="custom_btn">Pay</button>
+                <button className="custom_btn">
+                  <Link to={`/dashboard/payment/${d.price}`}>Pay</Link>
+                </button>
               </td>
               <td>
-                <button  onClick={() =>handleDelete(d._id)}>
+                <button onClick={() => handleDelete(d._id)}>
                   <AiOutlineDelete className="text-2xl text-red-500" />
                 </button>
               </td>

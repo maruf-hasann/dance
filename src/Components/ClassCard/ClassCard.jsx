@@ -14,16 +14,19 @@ const ClassCard = ({ card }) => {
   const handleSelect = () => {
     if (user) {
       axios
-        .post("https://myapp-dun-mu.vercel.app/selected", {
-          name: card?.name,
-          studentEmail: user?.email,
-          image: card?.image,
-          email: card?.email,
-          insName: card?.insName,
-          seats: card?.seats,
-          price: card?.seats,
-          status: card?.status,
-        })
+        .post(
+          "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/selected",
+          {
+            name: card?.name,
+            studentEmail: user?.email,
+            image: card?.image,
+            email: card?.email,
+            insName: card?.insName,
+            seats: card?.seats,
+            price: card?.seats,
+            status: card?.status,
+          }
+        )
         .then((res) => {
           if (res.data.insertedId) {
             Swal.fire({

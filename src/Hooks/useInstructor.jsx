@@ -9,7 +9,7 @@ const useInstructor = () => {
         enabled: !loader,
         queryFn: async () => {
             const res = await axios.get(
-              `https://myapp-dun-mu.vercel.app/users/instructor/${user?.email}`
+              `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users/instructor/${user?.email}`
             );
             return res.data.instructor;
         }
@@ -17,4 +17,4 @@ const useInstructor = () => {
     return [isInstructor,isInstructorLoading]
 }
 
-export default useInstructor
+export default useInstructor;

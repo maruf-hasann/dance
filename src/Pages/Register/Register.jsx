@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import Lottie from "lottie-react";
 import animation from "../../assets/142230-login.json";
 import Google from '../../Components/GoogleLogin/Google';
@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 
 const Register = () => {
-    
+ 
   const { createUser, updateUserProfile } = useAuth();
   useTitle('Register')
   const {
@@ -26,13 +26,16 @@ const Register = () => {
         updateUserProfile(data.name, data.photo)
           .then(() => {
             const userInfo = { name: data.name, email: data.email,image:data.photo }
-              fetch("https://myapp-dun-mu.vercel.app/users", {
-                method: "POST",
-                headers: {
-                  "content-type": "application/json",
-                },
-                body: JSON.stringify(userInfo),
-              })
+              fetch(
+                "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users",
+                {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(userInfo),
+                }
+              )
                 .then((res) => res.json())
                 .then((data) => {
                   if (data.insertedId) {

@@ -11,7 +11,7 @@ const MyClass = () => {
     enabled: !loader,
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://myapp-dun-mu.vercel.app/all-classes?email=${user?.email}`
+        `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/all-classes?email=${user?.email}`
       );
       return data;
     },

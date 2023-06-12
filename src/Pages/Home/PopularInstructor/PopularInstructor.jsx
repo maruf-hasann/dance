@@ -5,18 +5,20 @@ import Text from '../../../Components/GoogleLogin/HeadingText/Text';
 const PopularInstructor = () => {
     const [instructor, setInstructor] = useState([])
     useEffect(() => {
-        fetch("https://myapp-dun-mu.vercel.app/instructor?role=instructor")
+        fetch(
+          "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/instructor?role=instructor"
+        )
           .then((res) => res.json())
           .then((data) => setInstructor(data));
     }, [])
     // console.log(instructor);
-    const filterInstructor = instructor.filter(data => data?.image && data?.role === 'instructor')
-    console.log(filterInstructor);
+    
+    // console.log(filterInstructor);
     return (
         <div className="my_container">
             <Text text='Popular Instructor'></Text>
-        <div className='lg:grid lg:grid-cols-3'>
-          {filterInstructor.map((i) => (
+        <div className='lg:grid lg:grid-cols-3 '>
+          {instructor.map((i) => (
             <InstructorCard key={i._id} card={i}></InstructorCard>
           ))}
         </div>

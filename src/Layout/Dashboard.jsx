@@ -1,16 +1,18 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import useAdmin from "../Hooks/useAdmin";
+
 import useInstructor from "../Hooks/useInstructor";
 import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
 import { FiUsers} from "react-icons/fi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdManageAccounts } from "react-icons/md";
+import useTitle from "../Hooks/useTitle";
+import useAdmin from "../Hooks/useAdmin";
 const Dashboard = () => {
-
+useTitle('DashBoard')
   const [isAdmin] = useAdmin()
   const [isInstructor] = useInstructor();
-  // console.log(isInstructor);
+ 
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -81,7 +83,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/selectedClass">My Selected Classes</Link>
               </li>
               <li>
-                <Link to="/">My Enroll Classes</Link>
+                <Link to="/dashboard/enrollClass">My Enroll Classes</Link>
               </li>
             </>
           )}

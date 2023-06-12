@@ -8,13 +8,16 @@ const Google = () => {
             .then(result => {
                 const user = result.user
                 const userInfo = {name:user.displayName,email:user.email }
-                fetch("https://myapp-dun-mu.vercel.app/users", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(userInfo),
-                })
+                fetch(
+                  "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users",
+                  {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify(userInfo),
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     console.log(data);

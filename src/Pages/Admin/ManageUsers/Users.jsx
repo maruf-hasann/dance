@@ -3,41 +3,51 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 
 const Users = () => {
-     
+   const [axiosSecure] = useAxiosSecure();
   // const [active,setActive] = useState(disabled)
     const { data: users = [],refetch } = useQuery(['users'], async () => {
-        const res = await axios.get("https://myapp-dun-mu.vercel.app/users");
+        const res = await axiosSecure.get(
+          "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users"
+        );
         return res.data;
     })
     // make Admin
     const handleMakeAdmin = (user) => {
 
-      fetch(`https://myapp-dun-mu.vercel.app/users/admin/${user._id}`, {
-        method: "PATCH",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.modifiedCount) {
-            refetch();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `${user?.name} is an Admin Now`,
-              showConfirmButton: false,
-              timer: 1000,
-            });
-          }
-        });
+     axiosSecure
+       .patch(
+         `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users/admin/${user._id}`,
+         {
+           method: "PATCH",
+         }
+       )
+
+       .then((data) => {
+         if (data.data.modifiedCount) {
+           refetch();
+           Swal.fire({
+             position: "top-end",
+             icon: "success",
+             title: `${user?.name} is an Admin Now`,
+             showConfirmButton: false,
+             timer: 1000,
+           });
+         }
+       });
   }
   
   const handleMakeInstructor = (user) => {
 
-   fetch(`https://myapp-dun-mu.vercel.app/users/instructor/${user._id}`, {
-     method: "PATCH",
-   })
+   fetch(
+     `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users/instructor/${user._id}`,
+     {
+       method: "PATCH",
+     }
+   )
      .then((res) => res.json())
      .then((data) => {
        if (data.modifiedCount) {

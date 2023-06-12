@@ -29,15 +29,18 @@ const AddClass = () => {
                 const { name, seats, price } = data;
                 
                 axios
-                  .post("https://myapp-dun-mu.vercel.app/add-class", {
-                    name,
-                    image: img,
-                    email: user?.email,
-                    insName: user?.displayName,
-                    seats: parseInt(seats),
-                    price: parseInt(price),
-                    status: "Pending",
-                  })
+                  .post(
+                    "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/add-class",
+                    {
+                      name,
+                      image: img,
+                      email: user?.email,
+                      insName: user?.displayName,
+                      seats: parseInt(seats),
+                      price: parseInt(price),
+                      status: "Pending",
+                    }
+                  )
                   .then((res) => {
                     if (res.data.insertedId) {
                       reset();

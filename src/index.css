@@ -5,7 +5,12 @@
 * {
   font-family: 'Montserrat', sans-serif;
 }
-
+h1,h2,h3,h4,h5,h6 {
+  color:#12092e ;
+}
+p,span,strong {
+  color:#38363f ;
+}
 .my_container{
   @apply px-4 pb-9 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10
 }

@@ -7,7 +7,7 @@ import Text from '../../../Components/GoogleLogin/HeadingText/Text';
 const Popular = () => {
     const { data: classes = [], refetch } = useQuery(["users"], async () => {
       const res = await axios.get(
-        "https://myapp-dun-mu.vercel.app/popularClass"
+        "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/popularClass"
       );
       return res.data;
     });

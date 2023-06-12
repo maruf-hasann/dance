@@ -5,20 +5,24 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 
+
 const ManageClasses = () => {
-     
+
   const [idmodal, setIdmodal] = useState(null);
   const { data, refetch } = useQuery(["classes"], async () => {
     const { data } = await axios.get(
-      "https://myapp-dun-mu.vercel.app/admin-allClass"
+      "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/admin-allClass"
     );
     return data;
   });
   // console.log(data);
   const handleApproved = (id) => {
-    fetch(`https://myapp-dun-mu.vercel.app/admin-status/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/admin-status/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -39,9 +43,12 @@ const ManageClasses = () => {
     const text = event.target.text.value;
 
     await axios
-      .patch(`https://myapp-dun-mu.vercel.app/admin-feedBack?id=${idmodal}`, {
-        feedBack: event.target.text.value,
-      })
+      .patch(
+        `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/admin-feedBack?id=${idmodal}`,
+        {
+          feedBack: event.target.text.value,
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           Swal.fire({

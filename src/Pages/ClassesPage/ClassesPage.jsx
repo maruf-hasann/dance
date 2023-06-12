@@ -2,11 +2,13 @@ import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
 import ClassCard from '../../Components/ClassCard/ClassCard';
+import useTitle from '../../Hooks/useTitle';
 
 const ClassesPage = () => {
+  useTitle('Classes')
       const { data: classes = [], refetch } = useQuery(["users"], async () => {
         const res = await axios.get(
-          "https://myapp-dun-mu.vercel.app/popularClass"
+          "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/popularClass"
         );
         return res.data;
       });
