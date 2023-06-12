@@ -18,7 +18,7 @@ const PopularInstructor = () => {
         <div className="my_container">
             <Text text='Popular Instructor'></Text>
         <div className='lg:grid lg:grid-cols-3 '>
-          {instructor.map((i) => (
+          {instructor.slice(6,13).map((i) => (
             <InstructorCard key={i._id} card={i}></InstructorCard>
           ))}
         </div>

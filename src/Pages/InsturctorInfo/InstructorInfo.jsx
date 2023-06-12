@@ -12,7 +12,7 @@ const InstructorInfo = () => {
      .then((res) => res.json())
      .then((data) => setInstructor(data));
  }, []);
-   
+   console.log(instructor);
     return (
       <div className='my_container'>
         <Text text="Instructor"></Text>
