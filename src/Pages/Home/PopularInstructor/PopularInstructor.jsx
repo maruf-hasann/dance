@@ -5,9 +5,9 @@ import Text from '../../../Components/GoogleLogin/HeadingText/Text';
 const PopularInstructor = () => {
     const [instructor, setInstructor] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/instructor?role=instructor")
-            .then(res => res.json())
-            .then(data => setInstructor(data))
+        fetch("https://myapp-dun-mu.vercel.app/instructor?role=instructor")
+          .then((res) => res.json())
+          .then((data) => setInstructor(data));
     }, [])
     // console.log(instructor);
     const filterInstructor = instructor.filter(data => data?.image && data?.role === 'instructor')

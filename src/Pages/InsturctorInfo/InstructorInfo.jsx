@@ -5,7 +5,7 @@ import InfoCard from '../../Components/InstructorInfoCard/InfoCard';
 const InstructorInfo = () => {
  const [instructor, setInstructor] = useState([]);
  useEffect(() => {
-   fetch("http://localhost:5000/instructor?role=instructor")
+   fetch("https://myapp-dun-mu.vercel.app/instructor?role=instructor")
      .then((res) => res.json())
      .then((data) => setInstructor(data));
  }, []);

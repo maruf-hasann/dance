@@ -7,7 +7,9 @@ const useAdmin = () => {
        queryKey: ["isAdmin", user?.email],
          enabled: !loader,
          queryFn: async () => {
-             const res = await axios.get(`http://localhost:5000/users/admin/${user?.email}`)
+             const res = await axios.get(
+               `https://myapp-dun-mu.vercel.app/users/admin/${user?.email}`
+             );
             return res.data.admin
        }
      });

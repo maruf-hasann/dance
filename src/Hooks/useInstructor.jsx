@@ -8,7 +8,9 @@ const useInstructor = () => {
         queryKey: ['isInstructor', user?.email],
         enabled: !loader,
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/instructor/${user?.email}`)
+            const res = await axios.get(
+              `https://myapp-dun-mu.vercel.app/users/instructor/${user?.email}`
+            );
             return res.data.instructor;
         }
     })

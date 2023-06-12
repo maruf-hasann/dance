@@ -29,7 +29,7 @@ const AddClass = () => {
                 const { name, seats, price } = data;
                 
                 axios
-                  .post("http://localhost:5000/add-class", {
+                  .post("https://myapp-dun-mu.vercel.app/add-class", {
                     name,
                     image: img,
                     email: user?.email,

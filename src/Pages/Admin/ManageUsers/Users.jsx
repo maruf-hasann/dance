@@ -4,40 +4,42 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Swal from 'sweetalert2';
 
+
 const Users = () => {
+     
   // const [active,setActive] = useState(disabled)
     const { data: users = [],refetch } = useQuery(['users'], async () => {
-        const res = await axios.get("http://localhost:5000/users")
+        const res = await axios.get("https://myapp-dun-mu.vercel.app/users");
         return res.data;
     })
     // make Admin
     const handleMakeAdmin = (user) => {
 
-      fetch(`http://localhost:5000/users/admin/${user._id}`, {
-        method:'PATCH',
+      fetch(`https://myapp-dun-mu.vercel.app/users/admin/${user._id}`, {
+        method: "PATCH",
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           if (data.modifiedCount) {
-            refetch()
-           Swal.fire({
-             position: "top-end",
-             icon: "success",
-             title: `${user?.name} is an Admin Now`,
-             showConfirmButton: false,
-             timer: 1000,
-           });
-        }
-      })
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${user?.name} is an Admin Now`,
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        });
   }
   
   const handleMakeInstructor = (user) => {
 
-   fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+   fetch(`https://myapp-dun-mu.vercel.app/users/instructor/${user._id}`, {
      method: "PATCH",
    })
-      .then(res => res.json())
-     .then(data => {
+     .then((res) => res.json())
+     .then((data) => {
        if (data.modifiedCount) {
          refetch();
          Swal.fire({
@@ -47,8 +49,8 @@ const Users = () => {
            showConfirmButton: false,
            timer: 1000,
          });
-      }
-    })
+       }
+     });
 
   }
 

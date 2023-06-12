@@ -4,14 +4,17 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+
 const ClassCard = ({ card }) => {
+ 
   const { user } = useAuth();
+ 
   const location = useLocation()
 
   const handleSelect = () => {
     if (user) {
       axios
-        .post("http://localhost:5000/selected", {
+        .post("https://myapp-dun-mu.vercel.app/selected", {
           name: card?.name,
           studentEmail: user?.email,
           image: card?.image,
@@ -34,6 +37,10 @@ const ClassCard = ({ card }) => {
         });
     }
   };
+  
+ 
+  
+
   return (
     <div className="card w-96 h-[480px] bg-base-100 shadow-xl mb-6">
       <figure>
@@ -48,8 +55,8 @@ const ClassCard = ({ card }) => {
         <h2 className="font-semibold text-[22px]">Price : $ {card?.price}</h2>
 
         <div className="card-actions justify-start">
-          {user ? (
-            <button className="custom_btn" onClick={handleSelect}>
+          {user? (
+            <button  className="custom_btn disabled:bg-gray-200" onClick={handleSelect}>
               <Link>Select</Link>
             </button>
           ) : (

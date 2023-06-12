@@ -5,7 +5,9 @@ import ClassCard from '../../Components/ClassCard/ClassCard';
 
 const ClassesPage = () => {
       const { data: classes = [], refetch } = useQuery(["users"], async () => {
-        const res = await axios.get("http://localhost:5000/popularClass");
+        const res = await axios.get(
+          "https://myapp-dun-mu.vercel.app/popularClass"
+        );
         return res.data;
       });
     // console.log(classes);

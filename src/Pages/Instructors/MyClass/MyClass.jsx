@@ -11,7 +11,7 @@ const MyClass = () => {
     enabled: !loader,
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/all-classes?email=${user?.email}`
+        `https://myapp-dun-mu.vercel.app/all-classes?email=${user?.email}`
       );
       return data;
     },

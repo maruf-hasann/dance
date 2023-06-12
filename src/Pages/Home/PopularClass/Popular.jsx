@@ -6,7 +6,9 @@ import Text from '../../../Components/GoogleLogin/HeadingText/Text';
 
 const Popular = () => {
     const { data: classes = [], refetch } = useQuery(["users"], async () => {
-      const res = await axios.get("http://localhost:5000/popularClass");
+      const res = await axios.get(
+        "https://myapp-dun-mu.vercel.app/popularClass"
+      );
       return res.data;
     });
     

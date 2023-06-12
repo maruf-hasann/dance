@@ -13,7 +13,7 @@ const SelectedClass = () => {
 
   const { data, refetch } = useQuery(["Email"], async () => {
     const res = await axios.get(
-      `http://localhost:5000/studentSelect?email=${user?.email}`
+      `https://myapp-dun-mu.vercel.app/studentSelect?email=${user?.email}`
     );
    
     return res.data;
@@ -21,7 +21,9 @@ const SelectedClass = () => {
 //   console.log(data);
   const handleDelete = async (id) => {
      
-    const res = await axios.delete(`http://localhost:5000/delete?id=${id}`)
+    const res = await axios.delete(
+      `https://myapp-dun-mu.vercel.app/delete?id=${id}`
+    );
     if (res.data.deletedCount > 0) {
       refetch()
       Swal.fire({

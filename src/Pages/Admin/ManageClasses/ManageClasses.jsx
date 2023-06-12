@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import Text from "../../../Components/GoogleLogin/HeadingText/Text";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { data } from "autoprefixer";
 import Swal from "sweetalert2";
 
+
 const ManageClasses = () => {
+     
   const [idmodal, setIdmodal] = useState(null);
   const { data, refetch } = useQuery(["classes"], async () => {
-    const { data } = await axios.get("http://localhost:5000/admin-allClass");
+    const { data } = await axios.get(
+      "https://myapp-dun-mu.vercel.app/admin-allClass"
+    );
     return data;
   });
   // console.log(data);
   const handleApproved = (id) => {
-    fetch(`http://localhost:5000/admin-status/${id}`, {
+    fetch(`https://myapp-dun-mu.vercel.app/admin-status/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -35,20 +38,21 @@ const ManageClasses = () => {
 
     const text = event.target.text.value;
 
-    await axios.patch(`http://localhost:5000/admin-feedBack?id=${idmodal}`, {
-      feedBack: event.target.text.value,
-    })
-        .then(res => {
-            if (res.data.modifiedCount) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Feedback send",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-          }
+    await axios
+      .patch(`https://myapp-dun-mu.vercel.app/admin-feedBack?id=${idmodal}`, {
+        feedBack: event.target.text.value,
       })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Feedback send",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="overflow-x-auto w-full">
