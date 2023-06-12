@@ -17,10 +17,10 @@ const PopularInstructor = () => {
     return (
       <div className="my_container">
         <Text text="Popular Instructor"></Text>
-        <JackInTheBox >
+        <JackInTheBox delay={1e3} cascade damping={1e-1}>
           {" "}
           <div className="lg:grid lg:grid-cols-3 ">
-            {instructor.slice(6, 13).map((i) => (
+            {instructor.slice(6, 12).map((i) => (
               <InstructorCard key={i._id} card={i}></InstructorCard>
             ))}
           </div>

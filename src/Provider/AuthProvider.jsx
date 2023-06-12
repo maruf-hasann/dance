@@ -52,7 +52,18 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoader(false)
+ if (currentUser) {
+   axios
+     .post("http://localhost:5000/jwt-token", {
+       email: currentUser.email,
+     })
+     .then((data) => {
+       localStorage.setItem("access-token", data.data.token);
+       setLoader(false);
+     });
+ } else {
+   localStorage.removeItem("access-token");
+ }
      
     });
     return () => {

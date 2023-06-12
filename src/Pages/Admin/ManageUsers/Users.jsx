@@ -7,19 +7,16 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 
 const Users = () => {
-   const [axiosSecure] = useAxiosSecure();
+   
   // const [active,setActive] = useState(disabled)
     const { data: users = [],refetch } = useQuery(['users'], async () => {
-        const res = await axiosSecure.get(
-          "https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users"
-        );
+        const res = await axios.get("http://localhost:5000/users");
         return res.data;
     })
     // make Admin
     const handleMakeAdmin = (user) => {
 
-     axiosSecure
-       .patch(
+    axios.patch(
          `https://b7a12-summer-camp-server-side-maruf-hasann.vercel.app/users/admin/${user._id}`,
          {
            method: "PATCH",
