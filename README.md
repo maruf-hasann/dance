@@ -8,11 +8,13 @@ https://exquisite-swan-6e91e1.netlify.app/
 
 ## Features
 
- - Firebase authentication
- - Admin make insturctor 
- - Insturctor Create a new class 
- - Admin Approved and pending Insturctor Added class
- - Admin can feedback insturctor class
+ - Firebase Authentication: Users can create an account and log in with their email and
+   password. They also can log in with Google.
+ - The admin role is the most significant key feature of this website. The admin can create
+  Instructor and crud operations of all .. 
+ - Instructor Create a new class 
+ - Admin Approved and pending Instructor Added class
+ - Admin can feedback instructor class
 
 ## Technology 
 - React js, Node js, Express js
