@@ -17,4 +17,5 @@ https://exquisite-swan-6e91e1.netlify.app/
  - Admin can feedback instructor class
 
 ## Technology 
-- React js, Node js, Express js
+- ReactJs, Tailwind on the client side, and MongoDB, ExpressJs, and Vercel
+for the backend. The Authentication part was done using Firebase Authentication.
